@@ -6,7 +6,7 @@ require_once("database.php");
  * @param mixed $branche, $date 
  * @return false|array 
  */
-function read($recherche)
+function readNotes($recherche)
 {
     static $ps = null;
     $sql = "SELECT idnote, branche, DATE_FORMAT(`date`, '%Y-%m-%d') as `date`, note, remarque, coefficient";
@@ -29,7 +29,7 @@ function read($recherche)
     return $answer;
 }
 
-function readById($idNote)
+function readNotesById($idNote)
 {
     static $ps = null;
     $sql = "SELECT idnote, branche, DATE_FORMAT(`date`, '%Y-%m-%d') as `date`, note, remarque, coefficient FROM `notes` WHERE idNote=:idNote";
@@ -49,7 +49,7 @@ function readById($idNote)
     return $answer;
 }
 
-function add($branche, $date, $note, $remarque)
+function addNote($branche, $date, $note, $remarque)
 {
     static $ps = null;
     $sql = 'INSERT INTO `notes` (`idnote`, `branche`, `date`, `note`, `remarque`, `coefficient`)'
@@ -71,7 +71,7 @@ function add($branche, $date, $note, $remarque)
     return $answer;
 }
 
-function delete($idNote)
+function deleteNote($idNote)
 {
     static $ps = null;
     $sql = 'DELETE FROM `notes` WHERE `notes`.`idnote` = :idNote';
@@ -89,7 +89,7 @@ function delete($idNote)
     return $answer;
 }
 
-function update($branche, $date, $note, $remarque, $idNote)
+function updateNote($branche, $date, $note, $remarque, $idNote)
 {
     // Faire update
     static $ps = null;
