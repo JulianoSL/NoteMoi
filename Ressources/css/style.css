@@ -1,5 +1,13 @@
 .menu{
-    background-color: #009688!important;
+    background-color: #009688!important;   
 }
+
+footer
+{
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+
 
 
