@@ -1,13 +1,13 @@
-.menu{
-    background-color: #009688;   
+html, body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Roboto", sans-serif
 }
 
-footer
-{
+.menu {
+    background-color: #009688;
+}
+
+footer {
     width: 100%;
     bottom: 0;
     position: absolute;
 }
-
-
-
