@@ -1,153 +1,61 @@
 <?php
-require_once("database.php");
+/*
+Auteur   :  Juliano Souza Luz , Dan Bonvallat , Erik Magnus Rapin
+Date     :  Fin 2020
+Desc.    :  fonctions pour l'ensemble du site d'article
+Version  :  1.0
+*/
+require "constantes.inc.php";
 
 /**
- * Retourne les données d'une note en fonction de son idnote
- * @param mixed $branche, $date 
- * @return false|array 
+ * Connecteur de la base de données du .
+ * Le script meurt (die) si la connexion n'est pas possible.
+ * @static var PDO $dbc
+ * @return \PDO
  */
-function readNotes($recherche)
+function dbData()
 {
-    static $ps = null;
-    $sql = "SELECT idnote, branche, DATE_FORMAT(`date`, '%Y-%m-%d') as `date`, note, remarque, coefficient";
-    $sql .= " FROM `notes`";
-    $sql .= " WHERE `branche` LIKE :search OR `date` = :search LIMIT 50";
+    static $dbc = null;
 
-    if ($ps == null) {
-        $ps = connectDB()->prepare($sql);
-    }
-    $answer = false;
-    try {
-        $recherche = '%' . $recherche . '%';
-        $ps->bindParam(":search", $recherche, PDO::PARAM_STR);
-
-        if ($ps->execute())
-            $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
-    return $answer;
-}
-
-function readNotesById($idNote)
-{
-    static $ps = null;
-    $sql = "SELECT idnote, branche, DATE_FORMAT(`date`, '%Y-%m-%d') as `date`, note, remarque, coefficient FROM `notes` WHERE idNote=:idNote";
-
-    if ($ps == null) {
-        $ps = connectDB()->prepare($sql);
-    }
-    $answer = false;
-    try {
-        $ps->bindParam(":idNote", $idNote, PDO::PARAM_INT);
-
-        if ($ps->execute())
-            $answer = $ps->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
-    return $answer;
-}
-
-function addNote($branche, $date, $note, $remarque)
-{
-    static $ps = null;
-    $sql = 'INSERT INTO `notes` (`idnote`, `branche`, `date`, `note`, `remarque`, `coefficient`)'
-        . ' VALUES (NULL, :branche, :date, :note, :remarque, NULL)';
-    if ($ps == null) {
-        $ps = connectDB()->prepare($sql);
-    }
-    $answer = false;
-    try {
-        $ps->bindParam(":branche", $branche, PDO::PARAM_STR);
-        $ps->bindParam(":date", $date, PDO::PARAM_STR);
-        $ps->bindParam(":note", $note, PDO::PARAM_STR);
-        $ps->bindParam(":remarque", $remarque, PDO::PARAM_STR);
-        if ($ps->execute())
-            $answer = true;
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
-    return $answer;
-}
-
-function deleteNote($idNote)
-{
-    static $ps = null;
-    $sql = 'DELETE FROM `notes` WHERE `notes`.`idnote` = :idNote';
-    if ($ps == null) {
-        $ps = connectDB()->prepare($sql);
-    }
-    $answer = false;
-    try {
-        $ps->bindParam(":idNote", $idNote, PDO::PARAM_STR);
-        if ($ps->execute())
-            $answer = true;
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
-    return $answer;
-}
-
-function updateNote($branche, $date, $note, $remarque, $idNote)
-{
-    // Faire update
-    static $ps = null;
-    $sql = "UPDATE `notes` SET `branche` = :branche, `date` = :date, `note` = :note, `remarque` = :remarque WHERE `notes`.`idnote` = :idNote";
-    if ($ps == null) {
-        $ps = connectDB()->prepare($sql);
-    }
-    $answer = false;
-    try {
-        $ps->bindParam(":branche", $branche, PDO::PARAM_STR);
-        $ps->bindParam(":date", $date, PDO::PARAM_STR);
-        $ps->bindParam(":note", $note, PDO::PARAM_STR);
-        $ps->bindParam(":remarque", $remarque, PDO::PARAM_STR);
-        $ps->bindParam(":idNote", $idNote, PDO::PARAM_INT);
-        if ($ps->execute()) {
-            $answer = true;
+    // Première visite de la fonction
+    if ($dbc == null) {
+        // Essaie le code ci-dessous
+        try {
+            $dbc = new PDO('mysql:host=' . HOST . ';dbname=' . DBNAME, DBUSER, DBPWD, array(
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4",
+                PDO::ATTR_PERSISTENT => true,
+                PDO::ERRMODE_EXCEPTION => PDO::ATTR_ERRMODE
+            ));
         }
+        // Si une exception est arrivée
+        catch (Exception $e) {
+            echo 'Erreur : ' . $e->getMessage() . '<br />';
+            echo 'N° : ' . $e->getCode();
+            // Quitte le script et meurt
+            die('Could not connect to MySQL');
+        }
+    }
+    // Pas d'erreur, retourne un connecteur
+    return $dbc;
+}
+
+function afficherModif($row)
+{
+    static $ps = null;
+    $sql = "SELECT * FROM imc WHERE idImc=:ID";
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->bindParam(':ID', $row, PDO::PARAM_STR);
+        $ps->execute();
+
+        $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
+        $answer = array();
         echo $e->getMessage();
     }
     return $answer;
-}
-
-function NotesToHtmlTable($array)
-{
-    try {
-        foreach ($array as $value) {
-            echo "<tr>"
-                . "<td>" . $value["idnote"] . "</td>"
-                . "<td>" . $value["branche"] . "</td>"
-                . "<td>" . $value["date"] . "</td>"
-                . "<td>" . $value["note"] . "</td>"
-                . "<td>" . $value["remarque"] . "</td>"
-                . "<td>" . $value["coefficient"] . "</td>"
-                . "</tr>";
-        }
-    } catch (Exception $e) {
-        echo $e->getMessage();
-        return false;
-    }
-}
-
-function brancheToSelect($branche)
-{
-    try {
-        $branches = array(
-            "Langue & Société",
-            "Société",
-            "Anglais",
-            "Mathématiques",
-            "Physique",
-            "Education Physique"
-        );
-        foreach ($branches as $b) {
-            echo "<option value='" . $b . "' " . ($branche == $b ? 'selected' : '') . ">" . $b . "</option>";
-        }
-    } catch (Exception $e) {
-        echo $e->getMessage();
-        return false;
-    }
 }
