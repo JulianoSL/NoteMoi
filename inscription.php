@@ -2,6 +2,7 @@
 
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
+$confirmedPassword = filter_input(INPUT_POST, "confirmedPassword", FILTER_SANITIZE_STRING);
 $submit = filter_input(INPUT_POST, "btnSubmit");
 
 if ($submit == "Conncetion") 
@@ -68,13 +69,13 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     
       <form method="POST" action="#">
       <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16">Bienvenue sur notre site</h2>
+        <h2 class="w3-text-grey w3-padding-16">Vous êtes nouveau ?</h2>
         <div class="w3-container">
           <label>Username</label>
           <input type="text" name="username" value="<?= $username ?>">
         </div>
         <div class="w3-container">
-          <label>Password</label>
+          <label>Entrez votre password</label>
           <input type="password" name="password" value="<?= $password ?>">
         </div>
         <div class="w3-container">
