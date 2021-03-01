@@ -42,7 +42,7 @@ function dbData()
 function afficherUtilisateurs()
 {
     static $ps = null;
-    $sql = "SELECT IdUtilisateur, Nom, Mdp, `Role` FROM NoteMoi";
+    $sql = "SELECT `IdUtilisateur`, `Nom`, `Mdp`, `Role` FROM `utilisateur`";
 
     $answer = false;
     try {

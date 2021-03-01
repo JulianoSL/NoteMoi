@@ -11,9 +11,15 @@ if (!isset($_SESSION))
   ];  
 }
 
+require_once "Ressources/php/function.php";
+
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $submit = filter_input(INPUT_POST, "btnSubmit");
+
+$table = afficherUtilisateurs();
+
+var_dump($table);
 
 // Appuie sur btn Connection
 if ($submit == "Connection")
@@ -24,7 +30,8 @@ if ($submit == "Connection")
     if ($username == $key['username']) 
     {
       // Vérification mot de passe
-      if (password_verify($password, /*$key['password']*/"hash")) {
+      /*password_verify($password, $key['password'])*/
+      if ($password == $key['Mdp']) {
         // accepté
         $_SESSION['user']['username'] = $key['username'];
         $_SESSION['user']['role'] = $key['role'];
