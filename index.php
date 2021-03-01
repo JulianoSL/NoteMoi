@@ -15,7 +15,7 @@ session_start();
 <link href="Ressources/css/style.css" rel="stylesheet">
 
 <header class="menu">
-  <?= include_once("Ressources/php/navbar.inc.php"); ?>
+  <?php include_once("Ressources/php/navbar.inc.php"); ?>
   </header>
 
 <body class="w3-light-grey">
