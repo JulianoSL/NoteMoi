@@ -1,12 +1,51 @@
 <?php 
 
+session_start();
+
+// Si la session n'existe pas
+if (!isset($_SESSION)) 
+{
+  $_SESSION['user'] = [
+    "username" => "",
+    "password" => "",
+    "role" => ""
+  ];  
+}
+
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $submit = filter_input(INPUT_POST, "btnSubmit");
 
-if ($submit == "Conncetion") 
+// Appuie sur btn Connection
+if ($submit == "Connection")
 {
-    # test des identifiant, username et pwd avec bd
+  // Test, si utilisateur existe
+  foreach ($variable as $key) 
+  {
+    if ($username == $key['username']) 
+    {
+      
+      if ($password == $key['password']) {
+        // accepté
+        
+      }
+      else {
+        // non autorisé
+        // message erreur = "mot de passe incorrect";
+      }
+    }
+    else {
+      // message erreur = "l'utilisateur n'existe pas, voulez vous vous inscrire ?";
+    }
+  }
+  // Test, si mot de passe correcte
+  
+  // Diriger vers les pages de login
+  /*
+  header("location: inscription.php");
+  exit();
+  */
+  # test des identifiant, username et pwd avec bd
 }
 
 elseif ($submit == "Inscription") 
@@ -15,7 +54,6 @@ elseif ($submit == "Inscription")
     header("location: inscription.php");
     exit();
 }
-
 
 ?>
 <!DOCTYPE html>
