@@ -2,6 +2,8 @@
 
 session_start();
 
+
+
 // Si la session n'existe pas
 if (!isset($_SESSION)) 
 {
