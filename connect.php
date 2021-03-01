@@ -31,6 +31,7 @@ if ($submit == "Connection")
         echo "connection reussie";
         header("location: inscription.php");
         exit();
+        
       }
       else {
         // non autorisé
