@@ -24,8 +24,6 @@ session_start();
     <!-- The Grid -->
     <div class="w3-row-padding">
 
-
-
       <!-- Right Column -->
       <div class="main">
 
