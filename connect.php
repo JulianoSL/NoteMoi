@@ -7,7 +7,6 @@ if (!isset($_SESSION))
 {
   $_SESSION['user'] = [
     "username" => "",
-    "password" => "",
     "role" => ""
   ];  
 }
@@ -24,9 +23,14 @@ if ($submit == "Connection")
   {
     if ($username == $key['username']) 
     {
-      
-      if ($password == $key['password']) {
+      // Vérification mot de passe
+      if (password_verify($password, /*$key['password']*/"hash")) {
         // accepté
+        $_SESSION['user']['username'] = $key['username'];
+        $_SESSION['user']['role'] = $key['role'];
+        echo "connection reussie";
+        header("location: inscription.php");
+        exit();
         
       }
       else {
@@ -38,16 +42,9 @@ if ($submit == "Connection")
       // message erreur = "l'utilisateur n'existe pas, voulez vous vous inscrire ?";
     }
   }
-  // Test, si mot de passe correcte
-  
-  // Diriger vers les pages de login
-  /*
-  header("location: inscription.php");
-  exit();
-  */
-  # test des identifiant, username et pwd avec bd
 }
 
+// Appuie sur btn Inscription
 elseif ($submit == "Inscription") 
 {
     # nouveau compte
