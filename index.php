@@ -15,7 +15,7 @@ session_start();
 <link href="Ressources/css/style.css" rel="stylesheet">
 
 <header class="menu">
-  <?= include_once("Ressources/php/navbar.inc.php"); ?>
+  <?php include_once("Ressources/php/navbar.inc.php"); ?>
   </header>
 
 <body class="w3-light-grey">
@@ -82,15 +82,7 @@ session_start();
     <!-- End Page Container -->
   </div>
 
-  <footer class="w3-container w3-teal w3-center w3-margin-top">
-    <p>Find me on social media.</p>
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-  </footer>
+  <?php include_once("Ressources/php/footer.php")?>
 
 </body>
 
