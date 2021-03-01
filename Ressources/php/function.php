@@ -39,6 +39,27 @@ function dbData()
     return $dbc;
 }
 
+function afficherUtilisateurs()
+{
+    static $ps = null;
+    $sql = "SELECT IdUtilisateur, Nom, Mdp, `Role` FROM NoteMoi";
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->execute();
+
+        $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}
+
+
 function afficherModif($row)
 {
     static $ps = null;
