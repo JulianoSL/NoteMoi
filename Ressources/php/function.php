@@ -66,14 +66,14 @@ function afficherUtilisateurs()
 function rechercheUtilisateurParNom($nom)
 {
     static $ps = null;
-    $sql = "SELECT `IdUtilisateur`, `Nom`, `Mdp`, `Role` FROM `utilisateur` WHERE `Nom` like :nom";
-    
+    $sql = "SELECT `IdUtilisateur`, `Nom`, `Mdp`, `Role` FROM notemoi.utilisateur WHERE Nom like :Nom";
+
     $answer = false;
     try {
         if ($ps == null) {
             $ps = dbData()->prepare($sql);
         }
-        $ps->bindParam(':nom', $nom, PDO::PARAM_STR);
+        $ps->bindParam(':Nom', $nom, PDO::PARAM_STR);
         $ps->execute();
 
         $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
