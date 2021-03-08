@@ -38,7 +38,11 @@ function dbData()
     // Pas d'erreur, retourne un connecteur
     return $dbc;
 }
-
+/**
+ * affiche les utilisateurs
+ *
+ * @return void
+ */
 function afficherUtilisateurs()
 {
     static $ps = null;
