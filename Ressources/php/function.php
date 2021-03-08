@@ -59,6 +59,27 @@ function afficherUtilisateurs()
     return $answer;
 }
 
+function rechercheUtilisateurParNom($nom)
+{
+    static $ps = null;
+    $sql = "SELECT `IdUtilisateur`, `Nom`, `Mdp`, `Role` FROM `utilisateur` WHERE `Nom` like :nom";
+    
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->bindParam(':nom', $nom, PDO::PARAM_STR);
+        $ps->execute();
+
+        $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}
+
 function AjouterUtilisateur($username, $password)
 {
     static $ps = null;
