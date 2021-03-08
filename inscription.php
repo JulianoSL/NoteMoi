@@ -5,18 +5,35 @@ $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $confirmedPassword = filter_input(INPUT_POST, "confirmedPassword", FILTER_SANITIZE_STRING);
 $submit = filter_input(INPUT_POST, "btnSubmit");
 
-if ($submit == "Conncetion") 
+$errorMessage = "";
+
+if ($submit == "Connection")
 {
     # test des identifiant, username et pwd avec bd
 }
 
-elseif ($submit == "Inscription") 
+elseif ($submit == "Inscription")
 {
     # nouveau compte
-    header("location: inscription.php");
-    exit();
+    if (
+    $username != "" && $username != null 
+    && $password != "" && $password != null
+    && $confirmedPassword != "" && $confirmedPassword != null) 
+    {
+      $errorMessage = "";  
+      if ($password == $confirmedPassword) {
+        // Ajouter nouvel utilisateur 
+        AjouterUtilisateur($username, password_hash($password , PASSWORD_DEFAULT));
+        $errorMessage = "Bravo vous avez créer un compte !";  
+      }
+      else {
+        $errorMessage = "Vous n'avez pas réécrit le même mot de passe";  
+      }
+    }
+    else {
+      $errorMessage = "Veuillez remplir les champs !";
+    }
 }
-
 
 ?>
 <!DOCTYPE html>

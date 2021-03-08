@@ -80,3 +80,25 @@ function afficherModif($row)
     }
     return $answer;
 }
+
+function AjouterUtilisateur($username, $password)
+{
+    static $ps = null;
+    $sql = "INSERT INTO notemoi.utilisateur (Nom, Mdp, Role) VALUES (:username, :password, 'utilisateur')";
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->bindParam(':username', $username, PDO::PARAM_STR);
+        $ps->bindParam(':password', $password, PDO::PARAM_STR);
+        $ps->execute();
+
+        $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}
