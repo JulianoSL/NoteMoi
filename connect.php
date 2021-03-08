@@ -17,42 +17,42 @@ $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $submit = filter_input(INPUT_POST, "btnSubmit");
 
-$table = afficherUtilisateurs();
-
-var_dump($table);
+$table = rechercheUtilisateurParNom($username);
 
 // Appuie sur btn Connection
-if ($submit == "Connection")
+if ($submit == "Se connecter")
 {
   // Test, si utilisateur existe
-  foreach ($variable as $key) 
+  foreach ($table as $key) 
   {
-    if ($username == $key['username']) 
+    if ($username == $key['Nom'])
     {
       // Vérification mot de passe
-      /*password_verify($password, $key['password'])*/
-      if ($password == $key['Mdp']) {
+      if (password_verify($password, $key['Mdp']))
+      {
         // accepté
-        $_SESSION['user']['username'] = $key['username'];
-        $_SESSION['user']['role'] = $key['role'];
+        $_SESSION['user']['username'] = $key['Nom'];
+        $_SESSION['user']['role'] = $key['Role'];
         echo "connection reussie";
+        /*
         header("location: inscription.php");
         exit();
-        
+        */
       }
       else {
-        // non autorisé
-        // message erreur = "mot de passe incorrect";
+        // non autorisé, mauvais mot de passe
+        $errorMessage = "Mot de passe incorrect !";
       }
     }
     else {
-      // message erreur = "l'utilisateur n'existe pas, voulez vous vous inscrire ?";
+      // L'utilisateur n'existe pas
+      $errorMessage = "Cet utilisateur n'existe pas , voulez vous vous inscrire ?";
     }
   }
 }
 
 // Appuie sur btn Inscription
-elseif ($submit == "Inscription") 
+elseif ($submit == "S'inscrire'") 
 {
     # nouveau compte
     header("location: inscription.php");
@@ -73,7 +73,6 @@ elseif ($submit == "Inscription")
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 </style>
-  <?php include_once("Ressources/php/navbar.inc.php"); ?>
 <body class="w3-light-grey">
 
 <!-- Page Container -->
@@ -97,8 +96,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           <input type="password" name="password" value="<?= $password ?>">
         </div>
         <div class="w3-container">
-            <input type="button" name="btnSubmit" value="Connection">
-            <input type="button" name="btnSubmit" value="Inscription">
+            <input type="submit" name="btnSubmit" value="Se connecter">
+            <input type="submit" name="btnSubmit" value="S'inscrire">
         </div>
       </div>
       </form>
