@@ -5,14 +5,14 @@ $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $confirmedPassword = filter_input(INPUT_POST, "confirmedPassword", FILTER_SANITIZE_STRING);
 $submit = filter_input(INPUT_POST, "btnSubmit");
 
-$errorMessage = "";
+$errorMessage = "Rien a signaler";
 
-if ($submit == "Connection")
+if ($submit == "Se connecter")
 {
     # test des identifiant, username et pwd avec bd
 }
 
-elseif ($submit == "Inscription")
+elseif ($submit == "S'inscrire")
 {
     # nouveau compte
     if (
@@ -64,7 +64,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     
       <form method="POST" action="#">
       <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16">Vous êtes nouveau ?</h2>
+        <h2 class="w3-text-grey w3-padding-16">Inscription</h2>
         <div class="w3-container">
           <label>Username</label>
           <input type="text" name="username" value="<?= $username ?>">
@@ -74,9 +74,16 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           <input type="password" name="password" value="<?= $password ?>">
         </div>
         <div class="w3-container">
-            <input type="button" name="btnSubmit" value="Connection">
-            <input type="button" name="btnSubmit" value="Inscription">
+          <label>Réécrivez le mot de passe</label>
+          <input type="password" name="confirmedPassword" value="<?= $confirmedPassword ?>">
         </div>
+        <div class="w3-container">
+            <input type="button" name="btnSubmit" value="Se connecter">
+            <input type="button" name="btnSubmit" value="S'inscrire">
+        </div>
+      </div>
+      <div class="w3-container">
+        <p><?= $errorMessage ?></p>
       </div>
       </form>
 
