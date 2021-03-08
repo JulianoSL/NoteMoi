@@ -18,36 +18,43 @@ $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $submit = filter_input(INPUT_POST, "btnSubmit");
 
 $table = rechercheUtilisateurParNom($username);
+$errorMessage = "Rien a signaler !";
 
 // Appuie sur btn Connection
 if ($submit == "Se connecter")
 {
-  // Test, si utilisateur existe
-  foreach ($table as $key) 
-  {
-    if ($username == $key['Nom'])
+  if ($username != null && $username != "" && $password != null && $password != "") {
+    // Test, si utilisateur existe
+    var_dump($table);
+    foreach ($table as $key) 
     {
-      // Vérification mot de passe
-      if (password_verify($password, $key['Mdp']))
+      if ($username == $key['Nom'])
       {
-        // accepté
-        $_SESSION['user']['username'] = $key['Nom'];
-        $_SESSION['user']['role'] = $key['Role'];
-        echo "connection reussie";
-        /*
-        header("location: inscription.php");
-        exit();
-        */
+        // Vérification mot de passe
+        if (password_verify($password, $key['Mdp']))
+        {
+          // accepté
+          $_SESSION['user']['username'] = $key['Nom'];
+          $_SESSION['user']['role'] = $key['Role'];
+          echo "connection reussie";
+          /*
+          header("location: inscription.php");
+          exit();
+          */
+        }
+        else {
+          // non autorisé, mauvais mot de passe
+          $errorMessage = "Mot de passe incorrect !";
+        }
       }
       else {
-        // non autorisé, mauvais mot de passe
-        $errorMessage = "Mot de passe incorrect !";
+        // L'utilisateur n'existe pas
+        $errorMessage = "Cet utilisateur n'existe pas , voulez vous vous inscrire ?";
       }
     }
-    else {
-      // L'utilisateur n'existe pas
-      $errorMessage = "Cet utilisateur n'existe pas , voulez vous vous inscrire ?";
-    }
+  }
+  else {
+    $errorMessage = "Veuillez remplir les champs svp !";
   }
 }
 
@@ -98,7 +105,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         <div class="w3-container">
             <input type="submit" name="btnSubmit" value="Se connecter">
             <input type="submit" name="btnSubmit" value="S'inscrire">
-        </div>
+        </div>        
+      </div>
+      <div class="w3-container">
+            <p><?= $errorMessage ?></p>
       </div>
       </form>
 
