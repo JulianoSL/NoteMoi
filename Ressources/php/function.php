@@ -59,28 +59,6 @@ function afficherUtilisateurs()
     return $answer;
 }
 
-
-function afficherModif($row)
-{
-    static $ps = null;
-    $sql = "SELECT * FROM imc WHERE idImc=:ID";
-
-    $answer = false;
-    try {
-        if ($ps == null) {
-            $ps = dbData()->prepare($sql);
-        }
-        $ps->bindParam(':ID', $row, PDO::PARAM_STR);
-        $ps->execute();
-
-        $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
-    } catch (Exception $e) {
-        $answer = array();
-        echo $e->getMessage();
-    }
-    return $answer;
-}
-
 function AjouterUtilisateur($username, $password)
 {
     static $ps = null;
