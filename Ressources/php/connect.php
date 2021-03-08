@@ -40,10 +40,8 @@ if ($submit == "Se connecter")
           $_SESSION['user']['username'] = $key['Nom'];
           $_SESSION['user']['role'] = $key['Role'];
           $errorMessage = "connection reussie";
-          /*
-          header("location: inscription.php");
-          exit();
-          */
+          // redirection vers la page body
+          $_SESSION["body"] = "body.inc.php";
         }
         else {
           // non autorisé, mauvais mot de passe
@@ -60,11 +58,9 @@ if ($submit == "Se connecter")
 // Appuie sur btn Inscription
 elseif ($submit == "S'inscrire") 
 {
-    # nouveau compte
-    header("location: inscription.php");
-    exit();
+    // redirection vers la page inscription
+    $_SESSION["body"] = "inscription.php";
 }
-
 ?>
 
 <body class="w3-light-grey">

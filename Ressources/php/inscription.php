@@ -13,9 +13,8 @@ $errorMessage = "Rien a signaler";
 
 if ($submit == "Se connecter")
 {
-    // code ..
-    header("location: connect.php");
-    exit();
+  // redirection vers la page connection
+  $_SESSION["body"] = "connection.php";
 }
 
 if ($submit == "S'inscrire")
@@ -30,8 +29,8 @@ if ($submit == "S'inscrire")
       if ($password == $confirmedPassword) {
         // Ajouter nouvel utilisateur 
         AjouterUtilisateur($username, password_hash($password , PASSWORD_DEFAULT));
-        header("location: index.php");
-        exit();    
+        // redirection vers la page body
+        $_SESSION["body"] = "body.inc.php";
       }
       else {
         $errorMessage = "Vous n'avez pas réécrit le même mot de passe";  
