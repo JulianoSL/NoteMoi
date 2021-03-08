@@ -14,6 +14,7 @@ if ($submit == "Se connecter")
 
 elseif ($submit == "S'inscrire")
 {
+    echo "YOYOYOYOYOY";
     # nouveau compte
     if (
     $username != "" && $username != null 
