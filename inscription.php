@@ -1,5 +1,7 @@
 <?php 
 
+include_once "Ressources/php/function.php";
+
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $confirmedPassword = filter_input(INPUT_POST, "confirmedPassword", FILTER_SANITIZE_STRING);
@@ -9,12 +11,13 @@ $errorMessage = "Rien a signaler";
 
 if ($submit == "Se connecter")
 {
-    # test des identifiant, username et pwd avec bd
+    // code ..
+    header("location: index.php");
+    exit();
 }
 
-elseif ($submit == "S'inscrire")
+if ($submit == "S'inscrire")
 {
-    echo "YOYOYOYOYOY";
     # nouveau compte
     if (
     $username != "" && $username != null 
@@ -25,7 +28,8 @@ elseif ($submit == "S'inscrire")
       if ($password == $confirmedPassword) {
         // Ajouter nouvel utilisateur 
         AjouterUtilisateur($username, password_hash($password , PASSWORD_DEFAULT));
-        $errorMessage = "Bravo vous avez créer un compte !";  
+        header("location: index.php");
+        exit();    
       }
       else {
         $errorMessage = "Vous n'avez pas réécrit le même mot de passe";  
@@ -51,7 +55,7 @@ elseif ($submit == "S'inscrire")
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 </style>
 
-  <?php include_once("Ressources/php/navbar.inc.php"); ?>
+  
 <body class="w3-light-grey">
 
 <!-- Page Container -->
@@ -62,7 +66,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
   
     <!-- Right Column -->
     <div class="main">
-    
       <form method="POST" action="#">
       <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16">Inscription</h2>
@@ -79,8 +82,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           <input type="password" name="confirmedPassword" value="<?= $confirmedPassword ?>">
         </div>
         <div class="w3-container">
-            <input type="button" name="btnSubmit" value="Se connecter">
-            <input type="button" name="btnSubmit" value="S'inscrire">
+            <input type="submit" name="btnSubmit" value="Se connecter">
+            <input type="submit" name="btnSubmit" value="S'inscrire">
         </div>
       </div>
       <div class="w3-container">
