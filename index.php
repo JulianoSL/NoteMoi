@@ -1,8 +1,16 @@
 <?php
 session_start();
+require_once "Ressources/php/function.php";
+
 if (!$_SESSION["body"]) {
-  $_SESSION["body"] = "Ressources/php/body.inc.php";
+  $_SESSION["body"] = "Ressources/php/body.php";
+} else {
+  $body = filter_input(INPUT_GET, "body", FILTER_SANITIZE_STRING);
+  if ($body) {
+    $_SESSION["body"] = "Ressources/php/" . $body;
+  }
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,4 +25,5 @@ if (!$_SESSION["body"]) {
 
 <?php include_once("Ressources/php/navbar.inc.php") ?>
 <?php include_once("Ressources/php/footer.inc.php") ?>
+
 </html>

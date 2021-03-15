@@ -1,7 +1,5 @@
 <?php 
 
-session_start();
-
 // Si la session n'existe pas
 if (!isset($_SESSION)) 
 {
@@ -11,8 +9,11 @@ if (!isset($_SESSION))
   ];
 }
 
+<<<<<<< HEAD
 require_once "function.php";
 
+=======
+>>>>>>> 349e143e93610493a8725529b3ee605cf1454646
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $submit = filter_input(INPUT_POST, "btnSubmit");

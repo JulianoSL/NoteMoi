@@ -1,6 +1,6 @@
 <?php
 define("HOST", "localhost");
-define("DBNAME", "NoteMoi");
+define("DBNAME", "notemoi");
 define("DBUSER", "noteMoiUser");
 define("DBPWD", "kjasdbd231");
 // CREATE USER 'noteMoiUser'@'localhost' IDENTIFIED BY 'kjasdbd231';
