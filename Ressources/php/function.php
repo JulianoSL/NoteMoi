@@ -46,7 +46,7 @@ function dbData()
 function afficherUtilisateurs()
 {
     static $ps = null;
-    $sql = "SELECT `IdUtilisateur`, `Nom`, `Mdp`, `Role` FROM `utilisateur`";
+    $sql = "SELECT idAvis, titreAvis, commentaireAvis FROM avis WHERE idProduit = :idProduit";
 
     $answer = false;
     try {
@@ -61,6 +61,40 @@ function afficherUtilisateurs()
         echo $e->getMessage();
     }
     return $answer;
+}
+
+function rechercheAvisParIdProduit($id)
+{
+    static $ps = null;
+    $sql = "SELECT idAvis, titreAvis, commentaireAvis FROM avis WHERE idProduit = :idProduit";
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->bindParam(':idAvis', $id, PDO::PARAM_STR);
+        $ps->execute();
+
+        $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}
+
+function AfficherAvis($tableAvis)
+{
+    $text = "";
+    foreach ($tableAvis as $key) 
+    {
+        $text .= "<div>";
+        $text .= "<h2>" . $key["titre"] ."</h2>";
+        $text .= "<p>" . $key["commentaire"] ."</p>";
+        $text .= "</div>";
+    }
+    return $text;
 }
 
 function rechercheUtilisateurParNom($nom)

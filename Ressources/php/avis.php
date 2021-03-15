@@ -1,6 +1,8 @@
 <?php
 
+require_once "function.php";
 
+$tableAvis = rechercheAvisParIdProduit($id);
 
 ?>
 
@@ -22,19 +24,10 @@
         
             <div>
             <?php
-
-            function LireAvis($tableAvis)
-            {
-                $text = "";
-                foreach ($tableAvis as $key) 
-                {
-                    $text .= "<div>";
-                    $text .= "<h2>" . $key["titre"] ."</h2>";
-                    $text .= "<p>" . $key["commentaire"] ."</p>";
-                    $text .= "</div>";
-                }
-                return $text;
-            }
+            
+            $requete = "SELECT idAvis, titreAvis, commentaireAvis FROM avis WHERE idProduit = :idProduit";
+            
+            AfficherAvis($tableAvis);
 
             ?>
             </div>
