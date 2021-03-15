@@ -14,7 +14,7 @@ $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $submit = filter_input(INPUT_POST, "btnSubmit");
 
 $table = rechercheUtilisateurParNom($username);
-$errorMessage = "Rien a signaler !";
+$errorMessage = "Rien à signaler !";
 
 // Appuie sur btn Connection
 if ($submit == "Se connecter")
