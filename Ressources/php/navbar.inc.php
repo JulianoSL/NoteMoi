@@ -1,4 +1,4 @@
-<header calss="menu">
+<header class="menu">
   <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-current="true">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php?body=body.php">Home</a>
