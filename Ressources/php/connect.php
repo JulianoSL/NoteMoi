@@ -1,7 +1,5 @@
 <?php 
 
-session_start();
-
 // Si la session n'existe pas
 if (!isset($_SESSION)) 
 {
@@ -10,8 +8,6 @@ if (!isset($_SESSION))
     "role" => ""
   ];
 }
-
-require_once "Ressources/php/function.php";
 
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
