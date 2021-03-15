@@ -31,7 +31,6 @@ if ($submit == "Se connecter")
         // Vérification mot de passe
         if (password_verify($password, $key['Mdp']))
         {
-
           // accepté
           $_SESSION['user']['username'] = $key['Nom'];
           $_SESSION['user']['role'] = $key['Role'];
@@ -52,10 +51,10 @@ if ($submit == "Se connecter")
 }
 
 // Appuie sur btn Inscription
-elseif ($submit == "S'inscrire") 
+if ($submit == "S'inscrire")
 {
     // redirection vers la page inscription
-    $_SESSION["body"] = "inscription.php";
+    header("Location:index.php?body=inscription.php");
 }
 ?>
 
