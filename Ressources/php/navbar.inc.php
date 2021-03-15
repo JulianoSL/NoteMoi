@@ -9,6 +9,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <?php
+            // si $_SESSION n'éxiste pas, alors on linitialise
             if (!isset($_SESSION["connected"])) {
               $_SESSION["connected"] = [];
             }
