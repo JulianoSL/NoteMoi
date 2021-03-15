@@ -63,6 +63,7 @@ function afficherUtilisateurs()
     return $answer;
 }
 
+
 function rechercheAvisParIdProduit($id)
 {
     static $ps = null;
