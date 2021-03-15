@@ -25,7 +25,7 @@ if (!$_SESSION["body"]) {
 <link href="Ressources/css/style.css" rel="stylesheet">
 
 <?php include_once("Ressources/php/navbar.inc.php") ?>
-<?php include_once($_SESSION["body"]) ?>
+<?php include_once('addNote.php') ?>
 <?php include_once("Ressources/php/footer.inc.php") ?>
 
 </html>
