@@ -24,7 +24,11 @@ if (!$_SESSION["body"]) {
 <link href="Ressources/css/style.css" rel="stylesheet">
 
 <?php include_once("Ressources/php/navbar.inc.php") ?>
+<<<<<<< Updated upstream
 <?php include_once($_SESSION["body"]) ?>
+=======
+<?= $_SESSION['bob'];?>
+>>>>>>> Stashed changes
 <?php include_once("Ressources/php/footer.inc.php") ?>
 
 </html>
