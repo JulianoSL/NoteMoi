@@ -5,7 +5,7 @@ Date     :  Fin 2020
 Desc.    :  fonctions pour l'ensemble du site d'article
 Version  :  1.0
 */
-require "constantes.inc.php";
+require_once("Ressources/php/constantes.inc.php");
 
 /**
  * Connecteur de la base de données du .
