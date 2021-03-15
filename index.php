@@ -3,18 +3,19 @@ session_start();
 require_once "./Ressources/php/function.php";
 
 if (!$_SESSION["body"]) {
-  $_SESSION["body"] = "./Ressources/php/body.php";
+  $_SESSION["body"] = "./Ressources/Pages/Home.php";
 } else {
   $body = filter_input(INPUT_GET, "body", FILTER_SANITIZE_STRING);
   if ($body) {
-    $_SESSION["body"] = "./Ressources/php/" . $body;
+    $_SESSION["body"] = "./Ressources/Pages/" . $body;
   }
+  $nomPage = explode(".", $body);
 }
 
 ?>
 <!DOCTYPE html>
 <html>
-<title>Menu</title>
+<title><?= $nomPage[0]; ?></title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
