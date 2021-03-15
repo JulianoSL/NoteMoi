@@ -1,7 +1,7 @@
-<header calss="menu">
+<header class="menu">
   <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-current="true">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.php?body=body.php">Home</a>
+      <a class="navbar-brand" href="index.php?body=Home.php">Home</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -25,7 +25,7 @@
           if ($_SESSION["connected"]) {
           ?>
             <li class="nav-item">
-              <a class="nav-link " href="ajouter.php">Ajouter</a>
+              <a class="nav-link " href="index.php?body=addNotes.php">Ajouter</a>
             </li>
           <?php } ?>
         </ul>
