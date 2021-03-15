@@ -9,6 +9,9 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <?php
+            if (!isset($_SESSION["connected"])) {
+              $_SESSION["connected"] = [];
+            }
             if (!$_SESSION["connected"]) {
             ?> <a class="nav-link " aria-current="page" href="index.php?body=connect.php">Connexion</a>
             <?php } else {
