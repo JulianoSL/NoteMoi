@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once "Ressources/php/function.php";
-
+ 
 if (!$_SESSION["body"]) {
   $_SESSION["body"] = "Ressources/php/body.php";
 } else {
@@ -10,7 +10,7 @@ if (!$_SESSION["body"]) {
     $_SESSION["body"] = "Ressources/php/" . $body;
   }
 }
-
+ 
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,9 +22,9 @@ if (!$_SESSION["body"]) {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <link href="Ressources/css/style.css" rel="stylesheet">
-
+ 
 <?php include_once("Ressources/php/navbar.inc.php") ?>
 <?php include_once($_SESSION["body"]) ?>
 <?php include_once("Ressources/php/footer.inc.php") ?>
-
+ 
 </html>
