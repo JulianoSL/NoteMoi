@@ -9,11 +9,6 @@ if (!isset($_SESSION))
   ];
 }
 
-<<<<<<< HEAD
-require_once "function.php";
-
-=======
->>>>>>> 349e143e93610493a8725529b3ee605cf1454646
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $submit = filter_input(INPUT_POST, "btnSubmit");
@@ -36,7 +31,6 @@ if ($submit == "Se connecter")
         // Vérification mot de passe
         if (password_verify($password, $key['Mdp']))
         {
-
           // accepté
           $_SESSION['user']['username'] = $key['Nom'];
           $_SESSION['user']['role'] = $key['Role'];
@@ -60,7 +54,7 @@ if ($submit == "Se connecter")
 if ($submit == "S'inscrire")
 {
     // redirection vers la page inscription
-    $_SESSION["body"] = "inscription.php";
+    header("Location:index.php?body=inscription.php");
 }
 ?>
 
