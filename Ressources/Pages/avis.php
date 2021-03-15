@@ -1,4 +1,20 @@
+<?php
+session_start();
 
+require_once "../php/function.php";
+require_once "../php/function.php";
+
+
+$id = filter_input(INPUT_GET, "id");
+
+// par défaut pour les test je met id a 1
+$id = 1;
+
+$tableAvis = rechercheAvisParIdProduit($id);
+    
+AfficherAvis($tableAvis);
+
+?>
 
 <body class="w3-light-grey">
   <!-- Page Container -->
@@ -119,3 +135,4 @@
     <!-- End Page Container -->
   </div>
 </body>
+

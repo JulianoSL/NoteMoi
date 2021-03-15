@@ -5,7 +5,7 @@ Date     :  Fin 2020
 Desc.    :  fonctions pour l'ensemble du site d'article
 Version  :  1.0
 */
-require_once("Ressources/php/constantes.inc.php");
+require_once("constantes.inc.php");
 
 /**
  * Connecteur de la base de données du .
@@ -73,7 +73,7 @@ function rechercheAvisParIdProduit($id)
         if ($ps == null) {
             $ps = dbData()->prepare($sql);
         }
-        $ps->bindParam(':idAvis', $id, PDO::PARAM_STR);
+        $ps->bindParam(':idProduit', $id, PDO::PARAM_INT);
         $ps->execute();
 
         $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
