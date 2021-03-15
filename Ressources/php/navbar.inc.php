@@ -25,7 +25,7 @@
           if ($_SESSION["connected"]) {
           ?>
             <li class="nav-item">
-              <a class="nav-link " href="ajouter.php">Ajouter</a>
+              <a class="nav-link " href="index.php?body=addNotes.php">Ajouter</a>
             </li>
           <?php } ?>
         </ul>
