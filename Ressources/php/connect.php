@@ -11,7 +11,7 @@ if (!isset($_SESSION))
   ];
 }
 
-require_once "Ressources/php/function.php";
+require_once "function.php";
 
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
@@ -56,7 +56,7 @@ if ($submit == "Se connecter")
 }
 
 // Appuie sur btn Inscription
-elseif ($submit == "S'inscrire") 
+if ($submit == "S'inscrire")
 {
     // redirection vers la page inscription
     $_SESSION["body"] = "inscription.php";

@@ -14,7 +14,7 @@ $errorMessage = "Rien a signaler";
 if ($submit == "Se connecter")
 {
   // redirection vers la page connection
-  $_SESSION["body"] = "connection.php";
+  $_SESSION["body"] = "connect.php";
 }
 
 if ($submit == "S'inscrire")
