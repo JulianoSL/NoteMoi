@@ -25,7 +25,6 @@ $tableAvis = rechercheAvisParIdProduit($id);
             <div>
             <?php
             
-            $requete = "SELECT idAvis, titreAvis, commentaireAvis FROM avis WHERE idProduit = :idProduit";
             
             AfficherAvis($tableAvis);
 
