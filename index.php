@@ -1,21 +1,20 @@
 <?php
-session_start();
-require_once "./Ressources/php/function.php";
+session_start();  
+require_once "Ressources/php/function.php";
 
 if (!$_SESSION["body"]) {
-  $_SESSION["body"] = "./Ressources/Pages/Home.php";
+  $_SESSION["body"] = "Ressources/php/body.php";
 } else {
   $body = filter_input(INPUT_GET, "body", FILTER_SANITIZE_STRING);
   if ($body) {
-    $_SESSION["body"] = "./Ressources/Pages/" . $body;
+    $_SESSION["body"] = "Ressources/php/" . $body;
   }
-  $nomPage = explode(".", $body);
 }
 
 ?>
 <!DOCTYPE html>
 <html>
-<title><?= $nomPage[0]; ?></title>
+<title>Menu</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -25,7 +24,7 @@ if (!$_SESSION["body"]) {
 <link href="Ressources/css/style.css" rel="stylesheet">
 
 <?php include_once("Ressources/php/navbar.inc.php") ?>
-<?php include_once('addNote.php') ?>
+<?php include_once($_SESSION["body"]) ?>
 <?php include_once("Ressources/php/footer.inc.php") ?>
 
 </html>
