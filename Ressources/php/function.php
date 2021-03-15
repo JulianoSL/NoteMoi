@@ -46,7 +46,7 @@ function dbData()
 function afficherUtilisateurs()
 {
     static $ps = null;
-    $sql = "SELECT `IdUtilisateur`, `Nom`, `Mdp`, `Role` FROM `utilisateur`";
+    $sql = "SELECT idAvis, titreAvis, commentaireAvis FROM avis WHERE idProduit = :idProduit";
 
     $answer = false;
     try {
