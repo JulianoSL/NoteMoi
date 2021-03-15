@@ -1,6 +1,10 @@
 <?php
-session_start();
-require_once "./Ressources/php/function.php";
+
+require_once "Ressources/php/function.php";
+
+if (!isset($_SESSION["body"])) {
+  $_SESSION["body"] = [];
+}
 
 if (!$_SESSION["body"]) {
   $_SESSION["body"] = "./Ressources/Pages/Home.php";
@@ -27,7 +31,7 @@ if (!$_SESSION["body"]) {
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
 <?php include_once("Ressources/php/navbar.inc.php") ?>
-<?php include_once("Ressources/Pages/addNote.php") ?>
+<?php include_once("Ressources/Pages/avis.php"); ?>
 <?php include_once("Ressources/php/footer.inc.php") ?>
 
 </html>

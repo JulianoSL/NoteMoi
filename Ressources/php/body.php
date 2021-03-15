@@ -1,42 +1,12 @@
-<?php
-session_start();
-
-require_once "Ressources/php/function.php";
-
-$id = filter_input(INPUT_GET, "id");
-
-// par défaut pour les test je met id a 1
-$id = 1;
-
-$tableAvis = rechercheAvisParIdProduit($id);
-    
-AfficherAvis($tableAvis);
-
-?>
-
 <body class="w3-light-grey">
+
   <!-- Page Container -->
   <div class="w3-content w3-margin-top" style="max-width:1400px;">
 
     <!-- The Grid -->
     <div class="w3-row-padding">
-
-      <!-- Left Column -->
-      <div class="w3-third">
-
-        <div class="w3-white w3-text-grey w3-card-4">
-          <div class="w3-display-container">
-            <img src="Ressources/img/casque.jpg" style="width:100%" alt="Avatar">
-            
-          </div>
-          </div>
-        </div><br>
-
-        <!-- End Left Column -->
-      </div>
-
       <!-- Right Column -->
-      <div class="w3-twothird">
+      <div class="main">
 
         <div class="w3-container w3-card w3-white w3-margin-bottom">
           <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience</h2>
@@ -88,5 +58,6 @@ AfficherAvis($tableAvis);
 
     <!-- End Page Container -->
   </div>
-</body>
 
+
+</body>
