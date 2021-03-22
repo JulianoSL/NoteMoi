@@ -302,7 +302,6 @@ function returnProduit($idProduit)
 }
 
 
-
 /**
  * affiche les avis 
  *
@@ -327,12 +326,12 @@ function afficherToutAvis($avis)
 /**
  * selectionne tout les produits de la bd
  *
- * @return void
+ * @return array
  */
 function selectAllProduct()
 {
     static $ps = null;
-    $sql = "SELECT Nom, produit.Image, Marque, Prix, produit.Type FROM produit";
+    $sql = "SELECT idProduit,Nom, produit.Image, Marque, Prix, produit.Type FROM produit";
 
     $answer = false;
     try {

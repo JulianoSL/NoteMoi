@@ -1,9 +1,8 @@
-<?php 
+<?php
 $produits = selectAllProduct();
 
-
-
 ?>
+
 <body class="w3-light-grey">
   <form action="">
     <!-- Page Container -->
@@ -19,16 +18,23 @@ $produits = selectAllProduct();
             <div class="w3-display-container">
               <img src="Ressources/img/casque.jpg" style="width:100%" alt="Avatar">
               <div class="w3-display-bottomleft w3-container w3-text-black">
+                <select>
+                  <?php
+                  foreach ($produits as $key => $value) {
+                    echo '<option value="' . $value["Nom"] . '">' . $value["Nom"] . '</option>';
+                  }
+
+                  ?>
+                </select>
                 <h2>Nom Produit</h2>
               </div>
             </div>
             <div class="w3-container">
-              <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Prix</p>
-              <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Marque</p>
-              <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>QQCH</p>
-              <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>QQCH</p>
+              <p><i class="fa fa-money fa-fw w3-margin-right w3-large w3-text-teal"></i>Prix</p>
+              <p><i class="fa fa-group fa-fw w3-margin-right w3-large w3-text-teal"></i>Marque</p>
+              <p><i class="fa fa-info fa-fw w3-margin-right w3-large w3-text-teal"></i>Type</p>
               <hr>
-              <input type="submit" name="Ajouter" value="Ajouter un avis" class="Ajouter"/>
+              <input type="submit" name="Ajouter" value="Ajouter un avis" class="Ajouter" />
               <br>
               <br>
             </div>
