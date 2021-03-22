@@ -107,10 +107,10 @@ function AfficherAvis($tableAvis)
     return $text;
 }
 /**
- * rechercher un utilisateur par son nom
+ * recherche les utilisateurs par le nom
  *
- * @param [string] $nom
- * @return void
+ * @param string $nom
+ * @return array
  */
 function rechercheUtilisateurParNom($nom)
 {
