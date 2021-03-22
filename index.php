@@ -1,16 +1,7 @@
 <?php
-<<<<<<< HEAD
 session_start();  
 require_once "Ressources/php/function.php";
 
-=======
-
-require_once "Ressources/php/function.php";
-
-if (!isset($_SESSION["body"])) {
-  $_SESSION["body"] = [];
-}
->>>>>>> parent of 22e0fd3 (Page index a ne plus changer)
 
 if (!$_SESSION["body"]) {
   $_SESSION["body"] = "Ressources/php/body.php";
@@ -36,14 +27,7 @@ if (!$_SESSION["body"]) {
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
 <?php include_once("Ressources/php/navbar.inc.php") ?>
-<<<<<<< HEAD
-
 <?php include_once($_SESSION["body"]) ?>
-
-
-=======
-<?php include_once("Ressources/Pages/avis.php"); ?>
->>>>>>> parent of 22e0fd3 (Page index a ne plus changer)
 <?php include_once("Ressources/php/footer.inc.php") ?>
 
 </html>
