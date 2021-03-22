@@ -12,10 +12,16 @@ footer {
     position: absolute;
 }
 
-.w3-twothird
-{
+.w3-twothird {
     float: right;
 }
-.underline-none{
+
+.underline-none {
     text-decoration: none;
+}
+
+.areaAvis {
+    width: 30vw;
+    height: 30vh;
+    resize: none;
 }
