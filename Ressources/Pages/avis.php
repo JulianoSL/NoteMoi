@@ -9,7 +9,7 @@ $id = filter_input(INPUT_GET, "id");
 $id = 1;
 
 $tableAvis = rechercheAvisParIdProduit($id);
-
+  
 ?>
 
 <body class="w3-light-grey">
