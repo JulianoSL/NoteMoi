@@ -2,7 +2,6 @@
 session_start();
 require_once "Ressources/php/function.php";
 
-
 if (!$_SESSION["body"] && isset($_SESSION["body"])) {
   $_SESSION["body"] = "Ressources/Pages/body.php";
 } else {

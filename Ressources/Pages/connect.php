@@ -13,7 +13,7 @@ $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 $submit = filter_input(INPUT_POST, "btnSubmit");
 
-$table = rechercheUtilisateurParNom($username);
+$tableUtil = rechercheUtilisateurParNom($username);
 $errorMessage = "Rien à signaler !";
 
 // Appuie sur btn Connection
@@ -21,12 +21,12 @@ if ($submit == "Se connecter")
 {
   if ($username != null && $username != "" && $password != null && $password != "") {
     // Test, si utilisateur existe
-    if ($table == null) {
+    if ($tableUtil == null) {
       $errorMessage = "Cet utilisateur n'existe pas !";
     }
     else 
     {
-      foreach ($table as $key) 
+      foreach ($tableUtil as $key)
       {  
         // Vérification mot de passe
         if (password_verify($password, $key['Mdp']))
@@ -34,6 +34,8 @@ if ($submit == "Se connecter")
           // accepté
           $_SESSION['user']['username'] = $key['Nom'];
           $_SESSION['user']['role'] = $key['Role'];
+          $_SESSION["connected"] = true;
+          header("Location:index.php?body=Home.php");
           $errorMessage = "connexion reussie";
           // redirection vers la page body
           $_SESSION["body"] = "body.inc.php";
