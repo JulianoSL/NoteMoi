@@ -186,7 +186,7 @@ function GetNameFromIdProduit($idProduit)
         $ps->bindParam(':ID_PRODUIT', $idProduit, PDO::PARAM_STR);
         $ps->execute();
 
-        $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
+        $answer = $ps->fetch(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
         $answer = array();
         echo $e->getMessage();
@@ -212,7 +212,7 @@ function GetNameFromIdUser($idUser)
         $ps->bindParam(':ID_USER', $idUser, PDO::PARAM_STR);
         $ps->execute();
 
-        $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
+        $answer = $ps->fetch(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
         $answer = array();
         echo $e->getMessage();
@@ -313,10 +313,10 @@ function afficherToutAvis($avis)
     foreach ($avis as $key => $value) {
         echo '<a class="underline-none" href="index.php?body=avis.php&idAvis='.$value["IdAvis"].'"><div class="w3-row-padding">' .
             '<div class="w3-container w3-card w3-white w3-margin-bottom">' .
-            '<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>' . GetNameFromIdProduit($value["IdProduit"])[0]["Nom"] . '</h2>' .
+            '<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>' . GetNameFromIdProduit($value["IdProduit"])["Nom"] . '</h2>' .
             '<div class="w3-container">' .
             '<h5 class="w3-opacity"><b>Note : ' . $value["Note"] . '</b></h5>' .
-            '<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>' . $value["Date"] . ' - <span class="w3-tag w3-teal w3-round">Avis de ' . GetNameFromIdUser($value["IdUtilisateur"])[0]["Nom"] . '</span></h6>' .
+            '<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>' . $value["Date"] . ' - <span class="w3-tag w3-teal w3-round">Avis de ' . GetNameFromIdUser($value["IdUtilisateur"])["Nom"] . '</span></h6>' .
             '<p>' . substr($value["Commentaire"], 0, 50) . '...</p>' .
             '</div>' .
             '</div>   ' .
