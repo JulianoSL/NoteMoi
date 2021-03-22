@@ -256,7 +256,7 @@ function returnAvis($idAvis)
 function returnNameUtilisateur($idUtilisateur)
 {
     static $ps = null;
-    $sql = "SELECT idUtilisateur, Nom, FROM utilisateur WHERE Idutilisateur = :ID_USER";
+    $sql = "SELECT idUtilisateur, Nom FROM utilisateur WHERE IdUtilisateur = :ID_USER";
 
     $answer = false;
     try {
@@ -283,7 +283,7 @@ function returnNameUtilisateur($idUtilisateur)
 function returnProduit($idProduit)
 {
     static $ps = null;
-    $sql = "SELECT idProduit, Nom, produit.Image, Marque, Prix FROM produit WHERE IdProduit = :ID_PRODUIT";
+    $sql = "SELECT idUtilisateur, Nom FROM utilisateur WHERE IdUtilisateur = :ID_PRODUIT";
 
     $answer = false;
     try {

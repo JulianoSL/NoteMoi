@@ -6,6 +6,7 @@ if($idAvis)
   $avis = returnAvis($idAvis);
   $utilisateur = returnNameUtilisateur($avis["IdUtilisateur"]);
   $produit = returnProduit($avis["idProduit"]);
+  $bob = $utilisateur["Nom"];
 }
 
 
@@ -55,11 +56,11 @@ if($idAvis)
       <!-- Right Column -->
       <div class="w3-twothird">
         <div class="w3-container w3-card w3-white w3-margin-bottom">
-          <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><?= $utilisateur["name"]?></h2>
+          <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><?= $bob?></h2>
           <div class="w3-container">
             <h5 class="w3-opacity"><b>Front End Developer / w3schools.com</b></h5>
             <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 - <span class="w3-tag w3-teal w3-round">Current</span></h6>
-            <p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
+            <p><?= $avis["Commentaire"]?></p>
             <hr>
           </div>
           <div class="w3-container">
