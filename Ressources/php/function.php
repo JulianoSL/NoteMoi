@@ -90,23 +90,6 @@ function rechercheAvisParIdProduit($id)
     return $answer;
 }
 /**
- * afficher les avis
- *
- * @param [type] $tableAvis
- * @return void
- */
-function AfficherAvis($tableAvis)
-{
-    $text = "";
-    foreach ($tableAvis as $key) {
-        $text .= "<div>";
-        $text .= "<h2>" . $key["titre"] . "</h2>";
-        $text .= "<p>" . $key["commentaire"] . "</p>";
-        $text .= "</div>";
-    }
-    return $text;
-}
-/**
  * recherche les utilisateurs par le nom
  *
  * @param string $nom
@@ -236,6 +219,90 @@ function GetNameFromIdUser($idUser)
     }
     return $answer;
 }
+
+/**
+ * Retourne toutes les informations du produit séléctionné
+ *
+ * @param [int] $idAvis
+ * @return void
+ */
+function returnAvis($idAvis)
+{
+    static $ps = null;
+    $sql = "SELECT idAvis, Commentaire, Note, IdUtilisateur, idProduit FROM avis WHERE IdAvis = :ID_AVIS";
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->bindParam(':ID_AVIS', $idAvis, PDO::PARAM_INT);
+        $ps->execute();
+
+        $answer = $ps->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}
+
+/**
+ * retourne l'id et le nom de l'utilisateur
+ *
+ * @param [int] $idUtilisateur
+ * @return void
+ */
+function returnNameUtilisateur($idUtilisateur)
+{
+    static $ps = null;
+    $sql = "SELECT idUtilisateur, Nom, FROM utilisateur WHERE Idutilisateur = :ID_USER";
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->bindParam(':ID_USER', $idUtilisateur, PDO::PARAM_INT);
+        $ps->execute();
+
+        $answer = $ps->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}
+
+/**
+ * Retourne les informations du produit séléctionné
+ *
+ * @param [int] $idProduit
+ * @return void
+ */
+function returnProduit($idProduit)
+{
+    static $ps = null;
+    $sql = "SELECT idProduit, Nom, produit.Image, Marque, Prix FROM produit WHERE IdProduit = :ID_PRODUIT";
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->bindParam(':ID_PRODUIT', $idProduit, PDO::PARAM_INT);
+        $ps->execute();
+
+        $answer = $ps->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}
+
+
+
 /**
  * affiche les avis 
  *
