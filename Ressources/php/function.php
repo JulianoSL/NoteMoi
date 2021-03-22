@@ -245,7 +245,7 @@ function GetNameFromIdUser($idUser)
 function afficherToutAvis($avis)
 {
     foreach ($avis as $key => $value) {
-        echo '<div class="w3-row-padding">' .
+        echo '<a class="underline-none" href="index.php?body=avis.php&idAvis='.$value["IdAvis"].'"><div class="w3-row-padding">' .
             '<div class="w3-container w3-card w3-white w3-margin-bottom">' .
             '<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>' . GetNameFromIdProduit($value["IdProduit"])[0]["Nom"] . '</h2>' .
             '<div class="w3-container">' .
@@ -254,6 +254,6 @@ function afficherToutAvis($avis)
             '<p>' . substr($value["Commentaire"], 0, 50) . '...</p>' .
             '</div>' .
             '</div>   ' .
-            '</div>';
+            '</div></a>';
     }
 }
