@@ -332,7 +332,7 @@ function afficherToutAvis($avis)
 function selectAllProduct()
 {
     static $ps = null;
-    $sql = "SELECT idProduit FROM produit";
+    $sql = "SELECT Nom, produit.Image, Marque, Prix, produit.Type FROM produit";
 
     $answer = false;
     try {
