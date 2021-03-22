@@ -34,7 +34,7 @@ if ($submit == "Se connecter")
           // accepté
           $_SESSION['user']['username'] = $key['Nom'];
           $_SESSION['user']['role'] = $key['Role'];
-          $errorMessage = "connection reussie";
+          $errorMessage = "connexion reussie";
           // redirection vers la page body
           $_SESSION["body"] = "body.inc.php";
         }
