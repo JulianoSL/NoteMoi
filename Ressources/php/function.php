@@ -324,3 +324,27 @@ function afficherToutAvis($avis)
             '</div></a>';
     }
 }
+/**
+ * selectionne tout les produits de la bd
+ *
+ * @return void
+ */
+function selectAllProduct()
+{
+    static $ps = null;
+    $sql = "SELECT idProduit FROM produit";
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }       
+        $ps->execute();
+
+        $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}

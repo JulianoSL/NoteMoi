@@ -1,5 +1,11 @@
+<?php 
+$produits = selectAllProduct();
+
+
+
+?>
 <body class="w3-light-grey">
-  <form>
+  <form action="">
     <!-- Page Container -->
     <div class="w3-content w3-margin-top" style="max-width:1400px;">
 
@@ -22,7 +28,9 @@
               <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>QQCH</p>
               <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>QQCH</p>
               <hr>
-
+              <input type="submit" name="Ajouter" value="Ajouter un avis" class="Ajouter"/>
+              <br>
+              <br>
             </div>
           </div><br>
 
@@ -53,7 +61,6 @@
 
           <!-- End Right Column -->
         </div>
-
         <!-- End Grid -->
       </div>
 
