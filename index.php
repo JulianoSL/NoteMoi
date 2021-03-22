@@ -4,11 +4,11 @@ require_once "Ressources/php/function.php";
 
 
 if (!$_SESSION["body"]) {
-  $_SESSION["body"] = "Ressources/php/body.php";
+  $_SESSION["body"] = "Ressources/Pages/body.php";
 } else {
   $body = filter_input(INPUT_GET, "body", FILTER_SANITIZE_STRING);
   if ($body) {
-    $_SESSION["body"] = "Ressources/php/" . $body;
+    $_SESSION["body"] = "Ressources/Pages/" . $body;
   }
 }
 

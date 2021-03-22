@@ -1,7 +1,4 @@
 <?php
-
-session_start();
-
 include_once "function.php";
 
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
