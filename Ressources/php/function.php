@@ -317,7 +317,7 @@ function afficherToutAvis($avis)
             '<div class="w3-container">' .
             '<h5 class="w3-opacity"><b>Note : ' . $value["Note"] . '</b></h5>' .
             '<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>' . $value["Date"] . ' - <span class="w3-tag w3-teal w3-round">Avis de ' . GetNameFromIdUser($value["IdUtilisateur"])["Nom"] . '</span></h6>' .
-            '<p>' . substr($value["Commentaire"], 0, 50) . '...</p>' .
+            '<p>' . substr($value["Commentaire"], 0, 30) . '...</p>' .
             '</div>' .
             '</div>   ' .
             '</div></a>';
