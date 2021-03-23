@@ -20,7 +20,7 @@
               <a class=" nav-link " aria-current=" page" href="index.php?body=disconnect.php">Deconnexion</a>
             <?php } ?>
           </li>
-
+          
           <?php
           if ($_SESSION["connected"]) {
           ?>
