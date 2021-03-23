@@ -20,6 +20,7 @@ if ($submit == "S'inscrire") {
       AjouterUtilisateur($username, password_hash($password, PASSWORD_DEFAULT));
       $_SESSION['user']['username'] = $username;
       $_SESSION['user']['role'] = "user";
+      $_SESSION['user']['IdUtilisateur'] = GetLastIdUser()["IdUtilisateur"];
       $_SESSION["connected"] = true;
       header("Location:index.php?body=Home.php");
     } else {

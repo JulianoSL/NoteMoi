@@ -373,3 +373,58 @@ function selectProductFromName($nomProduit)
     }
     return $answer;
 }
+/**
+ * retourne l'id du dernier utilisateur inscrit
+ *
+ * @return void
+ */
+function GetLastIdUser()
+{
+    static $ps = null;
+    $sql = "SELECT IdUtilisateur FROM utilisateur ORDER BY IdUtilisateur DESC LIMIT 1";
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->execute();
+
+        $answer = $ps->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}
+/**
+ * ajoute un avis dans la bd
+ *
+ * @param string $commentaire
+ * @param int $idProduit
+ * @param int $idUtilisateur
+ * @param string $note
+ * @return void
+ */
+function ajouterAvis($commentaire, $idProduit, $idUtilisateur, $note)
+{
+    static $ps = null;
+    $sql = 'INSERT INTO avis (Commentaire,IdProduit,IdUtilisateur,Note)VALUES (:COMMENTAIRE, :ID_PRODUIT,:ID_UTILISATEUR,:NOTE)';
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->bindParam(':COMMENTAIRE', $commentaire, PDO::PARAM_STR);
+        $ps->bindParam(':ID_PRODUIT', $idProduit, PDO::PARAM_INT);
+        $ps->bindParam(':ID_UTILISATEUR', $idUtilisateur, PDO::PARAM_INT);
+        $ps->bindParam(':NOTE', $note, PDO::PARAM_STR);    
+
+        $answer = $ps->execute();
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}

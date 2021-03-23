@@ -34,6 +34,7 @@ if ($submit == "Se connecter")
           // accepté
           $_SESSION['user']['username'] = $key['Nom'];
           $_SESSION['user']['role'] = $key['Role'];
+          $_SESSION['user']['IdUtilisateur'] = $key['IdUtilisateur'];
           $_SESSION["connected"] = true;
           header("Location:index.php?body=Home.php");
           $errorMessage = "connexion reussie";
