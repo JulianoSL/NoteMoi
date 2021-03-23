@@ -1,4 +1,5 @@
 <?php
+$motRecherche = "";
 if (!isset($_SESSION["offset"])) {
   $_SESSION["offset"] = 0;
 }
@@ -14,7 +15,10 @@ if (isset($_POST["Reculer"])) {
     $_SESSION["offset"] -= 5;
   }
 }
-$avis = rechercherAvis($_SESSION["offset"]);
+if (isset($_POST["Search"])) {
+  $motRecherche = filter_input(INPUT_POST, "Content", FILTER_SANITIZE_STRING);  
+}
+$avis = rechercherAvis($_SESSION["offset"], $motRecherche);
 ?>
 
 <body class="w3-light-grey">

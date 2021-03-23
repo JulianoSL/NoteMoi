@@ -148,16 +148,18 @@ function AjouterUtilisateur($username, $password)
  *
  * @return void
  */
-function rechercherAvis($offset)
+function rechercherAvis($offset, $motRecherche)
 {
     static $ps = null;
-    $sql = "SELECT * FROM avis LIMIT 5 OFFSET :OFFSET";
+    $sql = "SELECT * FROM avis JOIN produit ON produit.IdProduit = avis.IdProduit WHERE Commentaire LIKE :SEARCH OR Nom Like :SEARCH LIMIT 5 OFFSET :OFFSET";
 
     $answer = false;
     try {
         if ($ps == null) {
             $ps = dbData()->prepare($sql);
         }
+        $motRecherche = "%$motRecherche%";
+        $ps->bindParam(':SEARCH', $motRecherche, PDO::PARAM_STR);
         $ps->bindParam(':OFFSET', $offset, PDO::PARAM_INT);
         $ps->execute();
 

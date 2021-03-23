@@ -20,7 +20,7 @@
               <a class=" nav-link " aria-current=" page" href="index.php?body=disconnect.php">Deconnexion</a>
             <?php } ?>
           </li>
-          
+
           <?php
           if ($_SESSION["connected"]) {
           ?>
@@ -32,9 +32,9 @@
         <?php
         if (basename($_SERVER['PHP_SELF']) == "index.php") {
         ?>
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+          <form class="d-flex" method="post" action="index.php?body=Home.php">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="Content">
+            <button class="btn btn-outline-success" type="submit" name="Search">Search</button>
           </form>
         <?php } ?>
       </div>
