@@ -312,9 +312,17 @@ function returnProduit($idProduit)
 function afficherToutAvis($avis)
 {
     foreach ($avis as $key => $value) {
+        switch (GetTypeFromId($value["IdProduit"])["Type"]) {
+            case 'Gaming':
+                $type = GAMING;
+                break;
+            case 'Education':
+                $type = EDUCATION;
+                break;
+        }
         echo '<a class="underline-none" href="index.php?body=avis.php&idAvis=' . $value["IdAvis"] . '"><div class="w3-row-padding">' .
             '<div class="w3-container w3-card w3-white w3-margin-bottom">' .
-            '<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>' . GetNameFromIdProduit($value["IdProduit"])["Nom"] . '</h2>' .
+            '<h2 class="w3-text-grey w3-padding-16"><i class="fa fa-' . $type . ' fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>' . GetNameFromIdProduit($value["IdProduit"])["Nom"] . '</h2>' .
             '<div class="w3-container">' .
             '<h5 class="w3-opacity"><b>Note : ' . $value["Note"] . '</b></h5>' .
             '<h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>' . $value["Date"] . ' - <span class="w3-tag w3-teal w3-round">Avis de ' . GetNameFromIdUser($value["IdUtilisateur"])["Nom"] . '</span></h6>' .
@@ -445,6 +453,33 @@ function countNombreAvis()
         if ($ps == null) {
             $ps = dbData()->prepare($sql);
         }
+        $ps->execute();
+
+        $answer = $ps->fetch(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}
+
+/**
+ * retourne le type de produit en fonction de son id
+ *
+ * @param int $idProduit
+ * @return string
+ */
+function GetTypeFromId($idProduit)
+{
+    static $ps = null;
+    $sql = "SELECT `Type` FROM produit WHERE IdProduit = :ID_PRODUIT";
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->bindParam(':ID_PRODUIT', $idProduit, PDO::PARAM_INT);
         $ps->execute();
 
         $answer = $ps->fetch(PDO::FETCH_ASSOC);
