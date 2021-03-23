@@ -1,6 +1,20 @@
 <?php
-$produits = selectAllProduct();
-
+$TabProduits = selectAllProduct();
+$nomProduit = filter_input(INPUT_GET, "nomProduit", FILTER_SANITIZE_STRING);
+if ($nomProduit) {
+  $produits = selectProductFromName($nomProduit);
+  $prix = $produits["Prix"];
+  $marque = $produits["Marque"];
+  $type = $produits["Type"];
+  $image = $produits["Image"];
+  $nom = $produits["Nom"];
+} else {
+  $prix = $TabProduits[0]["Prix"];
+  $marque = $TabProduits[0]["Marque"];
+  $type = $TabProduits[0]["Type"];
+  $image = $TabProduits[0]["Image"];
+  $nom = $TabProduits[0]["Nom"];
+}
 ?>
 
 <body class="w3-light-grey">
@@ -16,23 +30,29 @@ $produits = selectAllProduct();
 
           <div class="w3-white w3-text-grey w3-card-4">
             <div class="w3-display-container">
-              <img src="Ressources/img/casque.jpg" style="width:100%" alt="Avatar">
+              <h2><?= $nom; ?></h2>
+              <img src="Ressources/img/<?= $image; ?>" style="width:100%" alt="Avatar">
               <div class="w3-display-bottomleft w3-container w3-text-black">
-                <select>
+                <select onchange="reloadPage(this.value)">
                   <?php
-                  foreach ($produits as $key => $value) {
-                    echo '<option value="' . $value["Nom"] . '">' . $value["Nom"] . '</option>';
+                  foreach ($TabProduits as $key => $value) {
+                    $selected = "";
+                    if (isset($produits)) {
+                      if ($value["idProduit"] == $produits["idProduit"]) {
+                        $selected = "selected";
+                      }
+                    }
+                    echo '<option value="' . $value["Nom"] . '"' . $selected . '>' . $value["Nom"] . '</option>';
                   }
 
                   ?>
                 </select>
-                <h2>Nom Produit</h2>
               </div>
             </div>
             <div class="w3-container">
-              <p><i class="fa fa-money fa-fw w3-margin-right w3-large w3-text-teal"></i>Prix</p>
-              <p><i class="fa fa-group fa-fw w3-margin-right w3-large w3-text-teal"></i>Marque</p>
-              <p><i class="fa fa-info fa-fw w3-margin-right w3-large w3-text-teal"></i>Type</p>
+              <p><i class="fa fa-money fa-fw w3-margin-right w3-large w3-text-teal"></i><?= $prix; ?></p>
+              <p><i class="fa fa-group fa-fw w3-margin-right w3-large w3-text-teal"></i><?= $marque; ?></p>
+              <p><i class="fa fa-info fa-fw w3-margin-right w3-large w3-text-teal"></i><?= $type; ?></p>
               <hr>
               <input type="submit" name="Ajouter" value="Ajouter un avis" class="Ajouter" />
               <br>
@@ -74,3 +94,8 @@ $produits = selectAllProduct();
     </div>
   </form>
 </body>
+<script>
+  function reloadPage(nomProduit) {
+    window.location.replace("index.php?body=addAvis.php&nomProduit=" + nomProduit + "");
+  }
+</script>
