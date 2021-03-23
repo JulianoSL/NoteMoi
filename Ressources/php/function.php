@@ -284,7 +284,7 @@ function returnNameUtilisateur($idUtilisateur)
 function returnProduit($idProduit)
 {
     static $ps = null;
-    $sql = "SELECT idUtilisateur, Nom FROM utilisateur WHERE IdUtilisateur = :ID_PRODUIT";
+    $sql = "SELECT idProduit, Nom, produit.Image, Marque, Prix, produit.Type FROM produit WHERE IdProduit = :ID_PRODUIT";
 
     $answer = false;
     try {
