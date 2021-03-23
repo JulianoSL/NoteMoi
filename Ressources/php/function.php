@@ -148,16 +148,17 @@ function AjouterUtilisateur($username, $password)
  *
  * @return void
  */
-function rechercherAvis()
+function rechercherAvis($offset)
 {
     static $ps = null;
-    $sql = "SELECT * FROM avis";
+    $sql = "SELECT * FROM avis LIMIT 5 OFFSET :OFFSET";
 
     $answer = false;
     try {
         if ($ps == null) {
             $ps = dbData()->prepare($sql);
         }
+        $ps->bindParam(':OFFSET', $offset, PDO::PARAM_INT);
         $ps->execute();
 
         $answer = $ps->fetchAll(PDO::FETCH_ASSOC);
@@ -419,9 +420,34 @@ function ajouterAvis($commentaire, $idProduit, $idUtilisateur, $note)
         $ps->bindParam(':COMMENTAIRE', $commentaire, PDO::PARAM_STR);
         $ps->bindParam(':ID_PRODUIT', $idProduit, PDO::PARAM_INT);
         $ps->bindParam(':ID_UTILISATEUR', $idUtilisateur, PDO::PARAM_INT);
-        $ps->bindParam(':NOTE', $note, PDO::PARAM_STR);    
+        $ps->bindParam(':NOTE', $note, PDO::PARAM_STR);
 
         $answer = $ps->execute();
+    } catch (Exception $e) {
+        $answer = array();
+        echo $e->getMessage();
+    }
+    return $answer;
+}
+
+/**
+ * compte le nombre d'avis de la base de données
+ *
+ * @return int
+ */
+function countNombreAvis()
+{
+    static $ps = null;
+    $sql = 'SELECT COUNT(idAvis) FROM avis ';
+
+    $answer = false;
+    try {
+        if ($ps == null) {
+            $ps = dbData()->prepare($sql);
+        }
+        $ps->execute();
+
+        $answer = $ps->fetch(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
         $answer = array();
         echo $e->getMessage();

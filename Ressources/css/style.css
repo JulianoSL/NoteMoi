@@ -25,6 +25,11 @@ footer {
     height: 30vh;
     resize: none;
 }
-.Ajouter{
+
+.Ajouter {
     width: 16vw;
+}
+
+.droite {
+    float: right;
 }
