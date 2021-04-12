@@ -1,6 +1,7 @@
 <?php
 $TabProduits = selectAllProduct();
 $nomProduit = filter_input(INPUT_GET, "nomProduit", FILTER_SANITIZE_STRING);
+
 if ($nomProduit) {
   $produits = selectProductFromName($nomProduit);
   $prix = $produits["Prix"];
